@@ -3,46 +3,31 @@ import EmailIcon from '@vicons/ionicons5/Mail'
 import KeyIcon from '@vicons/ionicons5/Key'
 import { Icon } from '@vicons/utils'
 import { useAuthStore } from '@/stores/auth'
-import type { AuthRequest } from '@/types/base'
 import { onMounted, ref } from 'vue'
 import { useToast } from 'vue-toastification'
-import { GoogleLogin } from 'vue3-google-login'
 
-const store = useAuthStore()
 const router = useRouter()
-const route = useRoute()
 
 const email = ref('')
 const password = ref('')
 const toast = useToast()
 
 const loading = ref(false)
-// Use it!
+const supabase = useSupabaseClient()
+const user = useSupabaseUser()
+
 const onLogin = async () => {
   loading.value = true
   try {
-    const result = await store.login({
+    const result = await supabase.auth.signInWithPassword({
       email: email.value,
-      password: password.value
-    } as AuthRequest)
+      password: password.value,
+    })
 
     loading.value = false
     if (result) {
       toast('Login success!')
-
-      if (store.lastPath) {
-        if (store.lastPath.includes('wedding')) {
-          window.location.replace(store.lastPath)
-          store.setLastPath('')
-        } else {
-          router.push(store.lastPath).then(() => {
-            store.setLastPath('')
-          })
-        }
-      } else {
-        router.push('/').then()
-      }
-
+      router.push('/').then()
       return
     }
     toast.error('Login failed!')
@@ -56,34 +41,9 @@ const routeToRegister = () => {
   router.push('/register').then()
 }
 
-// const onLoginGoogle = async (response: any) => {
-//   const result = await store.loginWithGoogle(response.credential)
-//   if (result) {
-//     toast('Login success!')
-//     if (store.lastPath) {
-//       if (store.lastPath.includes('wedding')) {
-//         window.location.replace(store.lastPath)
-//         store.setLastPath('')
-//       } else {
-//         router.push(store.lastPath).then(() => {
-//           store.setLastPath('')
-//         })
-//       }
-//     } else {
-//       router.push('/').then()
-//     }
-//     return
-//   }
-// }
-
 onMounted(() => {
-  if (store.isAuth) {
+  if (user.value?.id) {
     router.push('/').then()
-  }
-
-  const { lastPath } = route.query
-  if (lastPath) {
-    store.setLastPath(String(lastPath))
   }
 })
 </script>

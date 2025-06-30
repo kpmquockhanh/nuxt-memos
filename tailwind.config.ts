@@ -2,8 +2,9 @@
 export default {
   content: [
     './*.{html,js}',
-    "./src/**/*.js",
-    "./src/**/*.vue",
+    "./**/*.js",
+    "./**/*.ts",
+    "./**/*.vue",
   ],
   theme: {
     extend: {

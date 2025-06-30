@@ -1,0 +1,52 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxtjs/supabase": "^1.5.3",
+    "@nuxtjs/tailwindcss": "^7.0.0-beta.0",
+    "@pinia/nuxt": "^0.11.1",
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/lodash": "^4.17.7",
+    "@types/socket.io": "^3.0.2",
+    "@types/socket.io-client": "^3.0.0",
+    "@vicons/fluent": "^0.12.0",
+    "@vicons/ionicons5": "^0.12.0",
+    "@vicons/utils": "^0.1.4",
+    "@vuepic/vue-datepicker": "^9.0.1",
+    "add": "^2.0.6",
+    "daisyui": "^5.0.43",
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.5",
+    "dropzone": "^6.0.0-beta.2",
+    "nuxt": "^3.17.5",
+    "pinia": "^3.0.3",
+    "postcss": "^8.5.6",
+    "postgres": "^3.4.7",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5",
+    "tailwindcss": "^4.1.11",
+    "vue": "^3.5.17",
+    "vue-router": "^4.5.1",
+    "vue-toastification": "^2.0.0-rc.5",
+    "vue3-dropzone": "^2.2.1",
+    "vue3-lazyload": "^0.3.8",
+    "vuedraggable": "^4.1.0",
+    "yarn": "^1.22.22",
+    "zoomist": "^2.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "node-sass": "^9.0.0",
+    "nuxt-purgecss": "^2.0.0",
+    "sass": "^1.89.2",
+    "sass-loader": "^16.0.5"
+  }
+}

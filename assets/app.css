@@ -1,8 +1,6 @@
-@use "base";
-@use 'css/404' as notfound;
-@use 'css/dropzone.css';
 @import "tailwindcss";
 
+@plugin "daisyui";
 @layer utilities {
   @variants responsive {
     .masonry {
@@ -26,7 +24,6 @@
     }
   }
 }
-
 
 body {
   //background-color: red;

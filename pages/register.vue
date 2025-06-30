@@ -7,7 +7,6 @@ import { useAuthStore } from '@/stores/auth'
 import { computed, ref } from 'vue'
 import { useToast } from 'vue-toastification'
 import { useRouter } from 'vue-router'
-import { GoogleLogin } from 'vue3-google-login'
 
 const password = ref('')
 const email = ref('')
@@ -39,21 +38,6 @@ const isValid = computed(() => {
   return email.value && password.value && name.value
 })
 
-const onLoginGoogle = async (response: any) => {
-  const result = await authStore.loginWithGoogle(response.credential)
-  if (result) {
-    toast('Login success!');
-    if (authStore.lastPath) {
-      router.push(authStore.lastPath).then(() => {
-        authStore.setLastPath('')
-      })
-    } else {
-      router.push('/').then()
-    }
-    return
-  }
-}
-
 </script>
 
 <template>
@@ -61,7 +45,6 @@ const onLoginGoogle = async (response: any) => {
     <div class="card lg:card-side bg-base-100 shadow-xl">
       <div class="card-body">
         <h2 class="card-title">Let's register!</h2>
-        <GoogleLogin :callback="onLoginGoogle" class="w-full flex justify-center mt-2" prompt/>
         <div class="divider m-0">OR</div>
         <label class="input input-bordered flex items-center gap-2">
           <Icon>
@@ -79,7 +62,7 @@ const onLoginGoogle = async (response: any) => {
           <Icon>
             <KeyIcon />
           </Icon>
-          <input type="password" class="grow" value="password" placeholder="password" v-model="password" autocomplete="off" />
+          <input type="password" class="grow" placeholder="Password" v-model="password" autocomplete="off" />
         </label>
         <div class="card-actions justify-end mt-4">
           <button class="btn" @click="routeToLogin">

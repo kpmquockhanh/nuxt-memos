@@ -85,7 +85,7 @@ onMounted(async () => {
       <div class="card-body p-4">
         <div class="flex items-center justify-between mb-3">
           <h2 class="card-title text-base font-semibold">Friends</h2>
-          <button 
+          <button
             class="btn btn-primary btn-sm gap-1 shadow-md hover:shadow-primary/20"
             @click="routeToFriendSearch"
           >
@@ -119,7 +119,7 @@ onMounted(async () => {
           <div v-else-if="!hasFriends" class="flex flex-col items-center justify-center py-6">
             <div class="text-3xl mb-3">👥</div>
             <p class="text-sm text-base-content/70 text-center mb-3">You don't have any friends yet.</p>
-            <button 
+            <button
               class="btn btn-primary btn-sm gap-1 shadow-lg hover:shadow-primary/20"
               @click="routeToFriendSearch"
             >
@@ -131,14 +131,14 @@ onMounted(async () => {
           </div>
 
           <!-- Friends List -->
-          <transition-group 
-            v-else 
-            name="list" 
-            tag="div" 
+          <transition-group
+            v-else
+            name="list"
+            tag="div"
             class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3"
           >
-            <div 
-              v-for="friend in friends" 
+            <div
+              v-for="friend in friends"
               :key="friend._id"
               class="group relative"
               @click="openModal(friend)"
@@ -148,9 +148,9 @@ onMounted(async () => {
                   <div class="flex flex-col items-center gap-2">
                     <div class="relative">
                       <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300">
-                        <DynamicImage 
-                          v-if="friend.photoUrl" 
-                          circle 
+                        <DynamicImage
+                          v-if="friend.photoUrl"
+                          circle
                           :src="friend.photoUrl"
                           class="w-full h-full object-cover"
                         />
@@ -160,7 +160,7 @@ onMounted(async () => {
                           </Icon>
                         </div>
                       </div>
-                      <div 
+                      <div
                         class="absolute -bottom-1 -right-1 w-3 h-3 bg-success rounded-full ring-2 ring-base-200"
                         :class="{ 'bg-success': friend.isOnline, 'bg-base-content/30': !friend.isOnline }"
                       ></div>
@@ -200,9 +200,9 @@ onMounted(async () => {
               <div class="flex flex-col items-center gap-3">
                 <div class="relative">
                   <div class="w-24 h-24 rounded-full overflow-hidden ring-4 ring-primary/20">
-                    <DynamicImage 
-                      v-if="modalState.selectedFriend?.photoUrl" 
-                      circle 
+                    <DynamicImage
+                      v-if="modalState.selectedFriend?.photoUrl"
+                      circle
                       :src="modalState.selectedFriend.photoUrl"
                       class="w-full h-full object-cover"
                     />
@@ -212,7 +212,7 @@ onMounted(async () => {
                       </Icon>
                     </div>
                   </div>
-                  <div 
+                  <div
                     class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full ring-4 ring-base-100"
                     :class="{ 'bg-success': modalState.selectedFriend?.isOnline, 'bg-base-content/30': !modalState.selectedFriend?.isOnline }"
                   ></div>
@@ -268,6 +268,8 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+@reference "tailwindcss/theme.css";
+
 .list-enter-active,
 .list-leave-active {
   transition: all 0.3s ease;
@@ -331,7 +333,7 @@ onMounted(async () => {
 }
 
 .modal-box {
-  @apply bg-base-100 rounded-xl shadow-2xl;
+  @apply rounded-xl shadow-2xl;
   max-height: 90vh;
   overflow-y: auto;
   z-index: 2;
